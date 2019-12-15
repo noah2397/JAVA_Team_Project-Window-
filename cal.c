@@ -33,7 +33,19 @@ void DrawTime(int y,int m,int d);
 void delete_schedule(struct tm t, int record);
 void input_date(int y, int m, int d, char* input, int unit, struct tm *t);
 void f(int signum){
-	quit = 1;
+	if(signum == 3) quit = 1;
+	else if(signum == 2){
+		char input[20];
+		clear();
+		move(0,0);
+		mvaddstr(26,10,"enter 'q' or 'quit' to close this program   :  ");
+		scanw("%s", input);
+		if(strcmp(input,"q")==0 || strcmp(input,"quit")==0)
+			exit(0);
+		mvaddstr(26,10,"                                          ");
+		mvaddstr(26,10,"Press enter key one more");
+	
+	}
 }
 struct data{
 	char line[10];
@@ -119,6 +131,7 @@ char* col[5] = {" "," ","*"," "," "};
 
 void main(void) {
 	signal(SIGQUIT,f);
+	signal(SIGINT, f);
 	int today, yo, month,year;
 	int unit;
 	time_t timer;
@@ -314,11 +327,8 @@ void main(void) {
 			mvaddstr(34,10," 6 + enter : mini schedule calculator\n");
 			mvaddstr(35,10," 7 + enter : Analog + Digital Wall Clock\n");
 			mvaddstr(38,10," Press ""enter"" to continue!\n");
+			mvaddstr(39,10," Press Ctrl + c to close\n");
 			input[0] = getch();
-			refresh();
-		}
-		else if(strcmp(input,"q") == 0 || strcmp(input,"quit") == 0){
-			clear();
 			refresh();
 		}
 		else{//잘못된 입력 처리
