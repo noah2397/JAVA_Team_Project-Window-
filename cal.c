@@ -40,11 +40,17 @@ void f(int signum){
 		move(0,0);
 		mvaddstr(26,10,"enter 'q' or 'quit' to close this program   :  ");
 		scanw("%s", input);
-		if(strcmp(input,"q")==0 || strcmp(input,"quit")==0)
+		if(strcmp(input,"q")==0 || strcmp(input,"quit")==0){
+			endwin();
 			exit(0);
-		mvaddstr(26,10,"                                          ");
-		mvaddstr(26,10,"Press enter key one more");
-	
+		}
+		else{
+			clear();
+			move(0,0);
+			mvaddstr(26,10,"wrong input! press enter to continue");
+			input[0] = getch();
+			f(signum);
+		}
 	}
 }
 struct data{
