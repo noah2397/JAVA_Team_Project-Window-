@@ -160,7 +160,6 @@ void main(void) {
 			year = t->tm_year + 1900;
 			clear();
 			unit = return_unit(month, year);
-
 		}
 		else if(strcmp(input,"1") == 0){ //다음달
 			if(t->tm_mon+1 == 1 && t->tm_mday > 28){
@@ -178,6 +177,8 @@ void main(void) {
 		}
 		else if(strcmp(input,"2") == 0){//일정 입력
 			clear();
+			move(0,0);
+			printw(">>%s",input);
 			DrawTime(t->tm_year+1900,t->tm_mon + 1,t->tm_mday);
 			print2(*t, unit);
 			mvaddstr(28,10,"< Input schedule >\n");
@@ -187,6 +188,8 @@ void main(void) {
 		}
 		else if(strcmp(input,"3") == 0){//일정 입력
 			clear();
+			move(0,0);
+			printw(">>%s",input);
 			int num;
 			DrawTime(t->tm_year+1900,t->tm_mon + 1,t->tm_mday);
 			print2(*t, unit);
@@ -212,6 +215,8 @@ void main(void) {
 		}
 		else if(strcmp(input,"4") == 0){//일정 입력
 			clear();
+			move(0,0);
+			printw(">>%s",input);
 			int num;
 			DrawTime(t->tm_year+1900,t->tm_mon + 1,t->tm_mday);
 			print2(*t, unit);
@@ -237,6 +242,8 @@ void main(void) {
 		}
 		else if(strcmp(input,"5") == 0){//일정 삭제
 			clear();
+			move(0,0);
+			printw(">>%s",input);
 			int record;
 			delete_count ++;
 			DrawTime(t->tm_year+1900,t->tm_mon + 1,t->tm_mday);
@@ -308,6 +315,10 @@ void main(void) {
 			mvaddstr(35,10," 7 + enter : Analog + Digital Wall Clock\n");
 			mvaddstr(38,10," Press ""enter"" to continue!\n");
 			input[0] = getch();
+			refresh();
+		}
+		else if(strcmp(input,"q") == 0 || strcmp(input,"quit") == 0){
+			clear();
 			refresh();
 		}
 		else{//잘못된 입력 처리
