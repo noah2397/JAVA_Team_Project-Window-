@@ -33,10 +33,7 @@ void DrawTime(int y,int m,int d);
 void delete_schedule(struct tm t, int record);
 void input_date(int y, int m, int d, char* input, int unit, struct tm *t);
 void f(int signum){
-	char c;
-	c = getch();
-	if(c=='q')
-		quit = 1;
+	quit = 1;
 }
 struct data{
 	char line[10];
